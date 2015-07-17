@@ -1,9 +1,8 @@
 {
-	"name": "Brytescore Real Estate",
-	"namespace": "realestate",
+	"name": "realestate",
+	"description": "Real estate visitor behavior and listing searches.",
 	"author": "Brytecore <info@brytecore.com>",
 	"version": "0.0.3",
-	"description": "Real estate visitor behavior and listing searches.",
 	"url": "https://github.com/Brytecore/brytescore-api-real-estate-package",
 	"userClassifications": [
 		"agent",
