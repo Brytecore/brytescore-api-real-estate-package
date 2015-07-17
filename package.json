@@ -4,11 +4,11 @@
 	"author": "Brytecore <info@brytecore.com>",
 	"version": "0.0.3",
 	"description": "Real estate visitor behavior and listing searches.",
-	"url": "",
+	"url": "https://github.com/Brytecore/brytescore-api-real-estate-package",
 	"userClassifications": [
-		"visitor",
 		"agent",
-		"staff"
+		"staff",
+		"visitor"
 	],
 	"globals": {
 		"listing": {
@@ -26,9 +26,9 @@
 				"longitude": "string",
 				"photoURL": "string",
 				"listingLink": "string",
+				"bedrooms": "string",
 				"halfBaths": "string",
-				"fullBaths": "string",
-				"bedrooms": "string"
+				"fullBaths": "string"
 			}
 		},
 		"search": {
@@ -38,107 +38,76 @@
 				"priceMin": "string",
 				"priceMax": "string",
 				"city": "string",
+				"stateProvince": "string",
 				"county": "string",
-				"address": "string",
-				"zipCode": "string",
+				"streetAddress": "string",
+				"postalCode": "string",
 				"subdivision": "string",
 				"propertyType": "string",
-				"numberOfBeds": "string",
-				"numberOfBaths": "string",
-				"listingNumbers": "string",
+				"bedroomsMin": "number",
+				"bedroomsMax": "number",
+				"fullBathsMin": "number",
+				"fullBathsMax": "number",
+				"halfBathsMin": "number",
+				"halfBathsMax": "number",
+				"mlsIds": "string",
 				"features": "string",
-				"radiusSearch": "string",
-				"school": "string"
+				"radiusSearch": "boolean",
+				"radiusInMiles": "number",
+				"schoolDistrict": "string"
 			}
 		}
 	},
 	"events": {
-		"quickSearch": {
-			"displayName": "Used Quick Search",
+		"calculatedMortgagePayment": {
+			"displayName": "Calculated a mortgage payment",
 			"globals": [
-				"search"
-			]
+				"listing"
+			],
+			"required": {
+				"price": "number",
+				"downPayment": "number",
+				"rate": "number"
+			}
 		},
-		"search": {
-			"displayName": "Used Search Feature",
+		"deletedSavedListing": {
+			"displayName": "Deleted a saved listing",
 			"globals": [
-				"search"
-			]
-		},
-		"savedSearch": {
-			"displayName": "Saved a Search",
-			"globals": [
-				"search"
-			]
-		},
-		"viewedSavedSearch": {
-			"displayName": "Viewed a Saved Search",
-			"globals": [
-				"search"
+				"listing"
 			]
 		},
 		"deletedSavedSearch": {
-			"displayName": "Deleted a Saved Search",
+			"displayName": "Deleted a saved search",
 			"globals": [
 				"search"
 			]
 		},
-		"updatedSavedSearch": {
-			"displayName": "Updated a Saved Search",
+		"dislikedListing": {
+			"displayName": "Disliked a listing",
 			"globals": [
-				"search"
-			]
+				"listing"
+			],
+			"required": {
+				"reason": "string"
+			}
 		},
-		"subscribedSearch": {
-			"displayName": "Subscribed to a Search",
-			"globals": [
-				"search"
-			]
-		},
-		"unsubscribedSearch": {
-			"displayName": "Unsubscribed to a Search",
-			"globals": [
-				"search"
-			]
-		},
-		"printedSearchResults": {
-			"displayName": "Printed search results",
-			"globals": [
-				"search"
-			]
-		},
-		"hideListing": {
-			"displayName": "Hide a Listing from Search Results",
+		"hidListing": {
+			"displayName": "Hid a listing from search results",
 			"globals": [
 				"listing"
 			]
 		},
-		"unhideListing": {
-			"displayName": "Unhide Listing from Search Results",
+		"likedListing": {
+			"displayName": "Liked a listing",
 			"globals": [
 				"listing"
-			]
-		},
-		"viewedListing": {
-			"displayName": "Viewed a Listing",
-			"globals": [
-				"listing"
-			]
-		},
-		"printedDrivingDirections": {
-			"displayName": "Printed Driving Directions",
-			"globals": [
-				"listing"
-			]
-		},
-		"requestedShowing": {
-			"displayName": "Requested a Showing",
-			"globals": [
-				"listing"
-			]
+			],
+			"required": {
+				"reason": "string"
+			}
 		},
 		"listingImpression": {
-			"displayName": "Listing Displayed in Search Results",
+			"displayName": "Listing displayed in search results",
 			"required": {
 				"price": "number",
 				"mlsId": "string"
@@ -153,44 +122,103 @@
 				"longitude": "string"
 			}
 		},
-		"printListing": {
-			"displayName": "Printed a Listing",
+		"printedDrivingDirections": {
+			"displayName": "Printed driving directions",
 			"globals": [
 				"listing"
 			]
 		},
-		"saveListing": {
-			"displayName": "Saved a Listing",
+		"printedListing": {
+			"displayName": "Printed a listing",
 			"globals": [
 				"listing"
 			]
 		},
-		"deleteSavedListing": {
-			"displayName": "Deleted a Saved Listing",
+		"printedListingFlyer": {
+			"displayName": "Printed a listing flyer",
 			"globals": [
 				"listing"
 			]
 		},
-		"subscribedListingUpdates": {
-			"displayName": "Subscribed Listing Update",
+		"printedSearchResults": {
+			"displayName": "Printed search results",
+			"globals": [
+				"search"
+			]
+		},
+		"requestedHomeAppraisal": {
+			"displayName": "Requested home appraisal",
+			"required": {
+				"address": "string",
+				"city": "string",
+				"state": "string",
+				"zip": "string"
+			}
+		},
+		"ratedListing": {
+			"displayName": "Rated a listing",
+			"globals": [
+				"listing"
+			],
+			"required": {
+				"rating": "string"
+			}
+		},
+		"requestedInfo": {
+			"displayName": "Requested more information on a listing",
 			"globals": [
 				"listing"
 			]
 		},
-		"unsubscribedListingUpdates": {
-			"displayName": "Unsubscribed Listing Update",
+		"requestedShowing": {
+			"displayName": "Requested a showing",
 			"globals": [
 				"listing"
 			]
 		},
-		"viewedSavedListing": {
-			"displayName": "Viewed a Saved Listing",
+		"quickSearched": {
+			"displayName": "Ran a quick search",
+			"globals": [
+				"search"
+			]
+		},
+		"searchedAgents": {
+			"displayName": "Searched for an agent",
+			"optional": {
+				"agentName": "string",
+				"language": "string",
+				"serviceArea": "string",
+				"expertise": "string",
+				"office": "string"
+			}
+		},
+		"searchedListings": {
+			"displayName": "Ran a listing search",
+			"globals": [
+				"search"
+			]
+		},
+		"searchedOffices": {
+			"displayName": "Searched for an office",
+			"optional": {
+				"officeName": "string",
+				"serviceArea": "string"
+			}
+		},
+		"savedListing": {
+			"displayName": "Saved a listing",
 			"globals": [
 				"listing"
+			]
+		},
+		"savedSearch": {
+			"displayName": "Saved a search",
+			"globals": [
+				"search"
 			]
 		},
 		"sharedListingEmail": {
-			"displayName": "Shared Listing by Email",
+			"displayName": "Shared a listing by email",
 			"globals": [
 				"listing"
 			],
@@ -200,119 +228,65 @@
 			}
 		},
 		"sharedListingFacebook": {
-			"displayName": "Shared Listing with Facebook",
+			"displayName": "Shared a listing with Facebook",
 			"globals": [
 				"listing"
 			]
 		},
 		"sharedListingTwitter": {
-			"displayName": "Shared Listing with Twitter",
+			"displayName": "Shared a listing with Twitter",
 			"globals": [
 				"listing"
 			]
 		},
-		"viewListingVirtualTour": {
-			"displayName": "Viewed a Virtual Tour",
-			"globals": [
-				"listing"
-			]
-		},
-		"viewListing3DTour": {
-			"displayName": "Viewed a 3D Tour for a Listing",
-			"globals": [
-				"listing"
-			]
-		},
-		"viewedDrivingDirections": {
-			"displayName": "Viewed Driving Directions",
-			"globals": [
-				"listing"
-			]
-		},
-		"viewedListingFlyer": {
-			"displayName": "Viewed a Listing Flyer",
-			"globals": [
-				"listing"
-			]
-		},
-		"printedListingFlyer": {
-			"displayName": "Printed a Listing Flyer",
-			"globals": [
-				"listing"
-			]
-		},
-		"requestInfo": {
-			"displayName": "Requested More Information",
-			"globals": [
-				"listing"
-			]
-		},
-		"likedListing": {
-			"displayName": "Liked a Listing",
-			"globals": [
-				"listing"
-			],
+		"submittedAgentContactForm": {
+			"displayName": "Submitted agent contact form",
 			"required": {
-				"reason": "string"
+				"agentId": "number",
+				"firstName": "string",
+				"lastName": "string",
+				"email": "string",
+				"formFields": "string"
 			}
 		},
-		"dislikedListing": {
-			"displayName": "Disliked a Listing",
+		"subscribedListingUpdates": {
+			"displayName": "Subscribed to listing updates",
 			"globals": [
 				"listing"
-			],
-			"required": {
-				"reason": "string"
-			}
+			]
 		},
-		"ratedListing": {
-			"displayName": "Rated a Listing",
+		"subscribedSearch": {
+			"displayName": "Subscribed to a search",
+			"globals": [
+				"search"
+			]
+		},
+		"unhidListing": {
+			"displayName": "Unhid listing from search results",
 			"globals": [
 				"listing"
-			],
-			"required": {
-				"rating": "string"
-			}
+			]
 		},
-		"viewedLargeListingPhoto": {
-			"displayName": "Viewed Listing Photo",
+		"unsubscribedListingUpdates": {
+			"displayName": "Unsubscribed from listing updates",
 			"globals": [
 				"listing"
-			],
-			"required": {
-				"photoUrl": "string"
-			}
+			]
 		},
-		"calcMortgagePayment": {
-			"displayName": "Calculated a Mortgage Payment",
+		"unsubscribedSearch": {
+			"displayName": "Unsubscribed from a search",
 			"globals": [
-				"listing"
-			],
-			"required": {
-				"price": "number",
-				"downPayment": "number",
-				"rate": "number"
-			}
+				"search"
+			]
 		},
-		"agentSearch": {
-			"displayName": "Searched for an Agent",
-			"optional": {
-				"agentName": "string",
-				"language": "string",
-				"serviceArea": "string",
-				"expertise": "string",
-				"office": "string"
-			}
+		"updatedSavedSearch": {
+			"displayName": "Updated a saved search",
+			"globals": [
+				"search"
+			]
 		},
-		"officeSearch": {
-			"displayName": "Searched for an Office",
-			"optional": {
-				"officeName": "string",
-				"serviceArea": "string"
-			}
-		},
-		"viewAgentProfile": {
-			"displayName": "Viewed an Agent Profile",
+		"viewedAgentProfile": {
+			"displayName": "Viewed an agent profile",
 			"required": {
 				"agentFirstName": "string",
 				"agentLastName": "string"
@@ -322,31 +296,63 @@
 				"agentEmail": "string"
 			}
 		},
-		"viewOfficeProfile": {
-			"displayName": "Viewed an Office Profile",
+		"viewedDrivingDirections": {
+			"displayName": "Viewed driving directions",
+			"globals": [
+				"listing"
+			]
+		},
+		"viewedLargeListingPhoto": {
+			"displayName": "Viewed a listing photo",
+			"globals": [
+				"listing"
+			],
+			"required": {
+				"photoUrl": "string"
+			}
+		},
+		"viewedListing": {
+			"displayName": "Viewed a listing",
+			"globals": [
+				"listing"
+			]
+		},
+		"viewedListing3DTour": {
+			"displayName": "Viewed a 3D tour",
+			"globals": [
+				"listing"
+			]
+		},
+		"viewedListingFlyer": {
+			"displayName": "Viewed a listing flyer",
+			"globals": [
+				"listing"
+			]
+		},
+		"viewedListingVirtualTour": {
+			"displayName": "Viewed a virtual tour",
+			"globals": [
+				"listing"
+			]
+		},
+		"viewedOfficeProfile": {
+			"displayName": "Viewed an office profile",
 			"required": {
 				"officeId": "number",
 				"officeName": "string"
 			}
 		},
-		"submittedAgentContactForm": {
-			"displayName": "Submitted Agent Contact Form",
-			"required": {
-				"agentId": "number",
-				"firstName": "string",
-				"lastName": "string",
-				"email": "string",
-				"formFields": "string"
-			}
+		"viewedSavedListing": {
+			"displayName": "Viewed a saved listing",
+			"globals": [
+				"listing"
+			]
 		},
-		"requestedHomeAppraisal": {
-			"displayName": "Requested Home Appraisal",
-			"required": {
-				"address": "string",
-				"city": "string",
-				"state": "string",
-				"zip": "string"
-			}
+		"viewedSavedSearch": {
+			"displayName": "Viewed a saved search",
+			"globals": [
+				"search"
+			]
 		}
 	},
 	"dependencies": {}
