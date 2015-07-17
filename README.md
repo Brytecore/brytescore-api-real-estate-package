@@ -11,7 +11,7 @@ Documentation on this package can be found in the [Brytescore API documentation]
 
 ##License
 
-This package is licensed under the [Apache license](LICENSE.md).
+This package is licensed under the [Apache license](LICENSE).
 
 
 
