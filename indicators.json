@@ -1,0 +1,56 @@
+{
+	"name": "Brytescore Real Estate Indicators",
+	"package": "realestate",
+	"author": "Brytecore <info@brytecore.com>",
+	"version": "0.0.1",
+	"description": "Real estate conversion indicators, as used by the Brytescore API and Real Estate Package.",
+	"indicators": {
+		"lookie-lou": {
+			"type": "event",
+			"displayName": "Lookie-lou",
+			"event": {
+				"name": "viewed_listing"
+			},
+			"weight": 20
+		},
+		"driver": {
+			"type": "repetition",
+			"displayName": "This guy likes to drive",
+			"events": [
+				{
+					"name": "printed_driving_directions",
+					"repititions": 5
+				},
+				{
+					"name": "requested_showing",
+					"repetitions": 1
+				}
+			],
+			"timeframe": "3d",
+			"weight": 40
+		},
+		"go-getter": {
+			"type": "sequence",
+			"displayName": "I'm on the way!",
+			"events": [
+				{
+					"name": "viewed_listing",
+					"parameters": {
+						"price": [
+							"gte",
+							"400000"
+						]
+					}
+				},
+				{
+					"name": "requested_showing"
+				},
+				{
+					"name": "printed_driving_directions"
+				}
+			],
+			"timeframe": "1d",
+			"weight": 60
+		}
+	}
+}

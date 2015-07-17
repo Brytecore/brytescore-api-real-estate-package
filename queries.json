@@ -1,0 +1,74 @@
+{
+	"name": "Brytescore Real Estate Queries",
+	"package": "realestate",
+	"author": "Brytecore <info@brytecore.com>",
+	"version": "0.0.1",
+	"description": "Available queries for the Brytescore Real Estate package.",
+	"queries": {
+		"listing_hits_by_listing": {
+			"event": "viewed_listing",
+			"function": "count",
+			"functionParam": "listing_id",
+			"groupByField": "listing_id",
+			"scopes": [
+				"app",
+				"user",
+				"apiKey"
+			],
+			"data": [
+				"price",
+				"mlsID",
+				"streetAddress1",
+				"streetAddress2",
+				"city",
+				"stateProvince",
+				"postalCode",
+				"latitude",
+				"longitude"
+			]
+		},
+		"listing_hits_sum": {
+			"event": "viewed_listing",
+			"function": "sum",
+			"functionParam": "price"
+		},
+		"listing_hits_count": {
+			"event": "viewed_listing",
+			"function": "count",
+			"functionParam": "listing_id"
+		},
+		"average_listing_price": {
+			"formula": "average",
+			"formulaParam": {
+				"sum": "listing_hits_sum",
+				"total": "listing_hits_count"
+			}
+		},
+		"listing_impressions": {
+			"event": "listing_impression",
+			"function": "count",
+			"functionParam": "listingID",
+			"groupByField": "listingID",
+			"scopes": [
+				"app",
+				"user",
+				"apiKey"
+			],
+			"data": [
+				"price",
+				"mlsID",
+				"streetAddress1",
+				"streetAddress2",
+				"city",
+				"stateProvince",
+				"postalCode",
+				"latitude",
+				"longitude"
+			]
+		},
+		"listing_impressions_distinct": {
+			"function": "count",
+			"functionParam": "listing_impressions"
+		}
+	}
+}
