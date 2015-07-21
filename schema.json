@@ -613,7 +613,7 @@
 			}
 		},
 		{
-			"viewedLargeListingPhoto": {
+			"viewedListingPhoto": {
 				"description": "Viewed a listing photo",
 				"type": "object",
 				"allOf": [
