@@ -1,9 +1,11 @@
 {
-	"name": "Brytescore Real Estate Indicators",
-	"package": "realestate",
+	"id": "https://cdn.brytecore.com/packages/realestate/indicators.json",
+	"description": "Real estate conversion indicators, as used by the Brytescore API real estate package",
+	"package": "https://cdn.brytecore.com/packages/realestate/package.json",
 	"author": "Brytecore <info@brytecore.com>",
-	"version": "0.0.1",
-	"description": "Real estate conversion indicators, as used by the Brytescore API and Real Estate Package.",
+	"version": "0.0.2",
+	"repository": "https://github.com/Brytecore/brytescore-api-real-estate-package",
+	"homepage": "https://www.brytecore.com/docs/real-estate-package",
 	"indicators": {
 		"lookie-lou": {
 			"type": "event",

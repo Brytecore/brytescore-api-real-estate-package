@@ -1,9 +1,11 @@
 {
-	"name": "Brytescore Real Estate Queries",
-	"package": "realestate",
+	"id": "https://cdn.brytecore.com/packages/realestate/queries.json",
+	"description": "A Brytescore API query list for the real estate package",
+	"package": "https://cdn.brytecore.com/packages/realestate/package.json",
 	"author": "Brytecore <info@brytecore.com>",
-	"version": "0.0.1",
-	"description": "Available queries for the Brytescore Real Estate package.",
+	"version": "0.0.2",
+	"repository": "https://github.com/Brytecore/brytescore-api-real-estate-package",
+	"homepage": "https://www.brytecore.com/docs/real-estate-package",
 	"queries": {
 		"listing_hits_by_listing": {
 			"event": "viewed_listing",
