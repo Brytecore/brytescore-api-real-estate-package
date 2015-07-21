@@ -7,46 +7,37 @@
 			"description": "A real estate listing",
 			"type": "object",
 			"properties": {
-				"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+				"address":     { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
 				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
-				"price": { "type": "number" },
-				"mlsId": { "type": "string" },
-				"photoURL": {
-					"type": "string",
-					"format": "uri"
-				},
-				"listingURL": {
-					"type": "string",
-					"format": "uri"
-				},
-				"bedrooms": { "type": "number" },
-				"halfBaths": { "type": "number" },
-				"fullBaths": { "type": "number" }
+				"price":       { "type": "number" },
+				"mlsId":       { "type": "string" },
+				"photoURL":    { "type": "string", "format": "uri" },
+				"listingURL":  { "type": "string", "format": "uri" },
+				"bedrooms":    { "type": "number" },
+				"halfBaths":   { "type": "number" },
+				"fullBaths":   { "type": "number" }
 			},
-			"required": [
-				"price",
-				"mlsId"
-			]
+			"required": [ "price", "mlsId" ]
 		},
 		"search": {
 			"description": "A real estate listing search",
 			"type": "object",
 			"properties": {
-				"priceMin": { "type": "number" },
-				"priceMax": { "type": "number" },
-				"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
-				"subdivision": { "type": "string" },
-				"propertyType": { "type": "string" },
-				"bedroomsMin": { "type": "number" },
-				"bedroomsMax": { "type": "number" },
-				"fullBathsMin": { "type": "number" },
-				"fullBathsMax": { "type": "number" },
-				"halfBathsMin": { "type": "number" },
-				"halfBathsMax": { "type": "number" },
-				"mlsIds": { "type": "string" },
-				"features": { "type": "string" },
-				"radiusSearch": { "type": "boolean" },
-				"radiusInMiles": { "type": "number" },
+				"priceMin":       { "type": "number" },
+				"priceMax":       { "type": "number" },
+				"address":        { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+				"subdivision":    { "type": "string" },
+				"propertyType":   { "type": "string" },
+				"bedroomsMin":    { "type": "number" },
+				"bedroomsMax":    { "type": "number" },
+				"fullBathsMin":   { "type": "number" },
+				"fullBathsMax":   { "type": "number" },
+				"halfBathsMin":   { "type": "number" },
+				"halfBathsMax":   { "type": "number" },
+				"mlsIds":         { "type": "string" },
+				"features":       { "type": "string" },
+				"radiusSearch":   { "type": "boolean" },
+				"radiusInMiles":  { "type": "number" },
 				"schoolDistrict": { "type": "string" }
 			}
 		}
@@ -57,11 +48,16 @@
 				"description": "",
 				"type": "object",
 				"allOf": [
-					{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/authenticated" },
+					{
+						"$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/authenticated"
+					},
 					{
 						"properties": {
-							"userClassification": {
-								"enum": [ "agent", "staff", "visitor" ]
+							"data": {
+								"type": "object",
+								"properties": {
+									"userClassification": { "enum": [ "agent", "staff", "visitor" ] }
+								}
 							}
 						}
 					}
@@ -72,295 +68,309 @@
 			"calculatedMortgagePayment": {
 				"description": "Calculated a mortgage payment",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.calculatedMortgagePayment" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.calculatedMortgagePayment" ] },
-							"price": { "type": "number" },
 							"downPayment": { "type": "number" },
-							"rate": { "type": "number" }
+							"listing":     { "$ref": "#/definitions/listing" },
+							"price":       { "type": "number" },
+							"rate":        { "type": "number" }
 						},
-						"required": [ "event", "price", "downPayment", "rate" ]
+						"required": [ "price", "downPayment", "rate" ]
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"deletedSavedListing": {
 				"description": "Deleted a saved listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.deletedSavedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.deletedSavedListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"deletedSavedSearch": {
 				"description": "Deleted a saved search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.deletedSavedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.deletedSavedSearch" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"dislikedListing": {
 				"description": "Disliked a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.dislikedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.deletedSavedListing" ] },
-							"reason": { "type": "string" }
+							"listing": { "$ref": "#/definitions/listing" },
+							"reason":  { "type": "string" }
 						},
-						"required": [
-							"event",
-							"reason"
-						]
+						"required": [ "reason" ]
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"hidListing": {
 				"description": "Hid a listing from search results",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.hidListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.hidListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"likedListing": {
 				"description": "Liked a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.likedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.likedListing" ] },
-							"reason": { "type": "string" }
+							"listing": { "$ref": "#/definitions/listing" },
+							"reason":  { "type": "string" }
 						},
-						"required": [
-							"event",
-							"reason"
-						]
+						"required": [ "reason" ]
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"listingImpression": {
 				"description": "Listing displayed in search results",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.listingImpression" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.listingImpression" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"printedDrivingDirections": {
 				"description": "Printed driving directions",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.printedDrivingDirections" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.printedDrivingDirections" ] }
-						},
-						"required": [ "event" ]
+							"listing":      { "$ref": "#/definitions/listing" },
+							"startAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"printedListing": {
 				"description": "Printed a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.printedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.printedListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"printedListingFlyer": {
 				"description": "Printed a listing flyer",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.printedListingFlyer" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.printedListingFlyer" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"printedSearchResults": {
 				"description": "Printed search results",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.printedSearchResults" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.printedSearchResults" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"requestedHomeAppraisal": {
 				"description": "Requested home appraisal",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/address" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.requestedHomeAppraisal" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.requestedHomeAppraisal" ] }
-						},
-						"required": [
-							"event",
-							"streetAddress",
-							"city",
-							"stateProvince",
-							"postalCode"
-						]
+							"address": {
+								"allOf": [
+									{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+									{
+										"required": [ "streetAddress", "city", "stateProvince", "postalCode" ]
+									}
+								]
+							}
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"ratedListing": {
 				"description": "Rated a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.ratedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.ratedListing" ] },
-							"rating": { "type": "string" }
+							"listing": { "$ref": "#/definitions/listing" },
+							"rating":  { "type": "string" }
 						},
-						"required": [
-							"event",
-							"rating"
-						]
+						"required": [ "rating" ]
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"requestedInfo": {
 				"description": "Requested more information on a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.requestedInfo" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.requestedInfo" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"requestedShowing": {
 				"description": "Requested a showing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.requestedShowing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.requestedShowing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"quickSearched": {
 				"description": "Ran a quick search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.quickSearched" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.quickSearched" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"searchedAgents": {
 				"description": "Searched for an agent",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/person" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.searchedAgents" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.searchedAgents" ] },
-							"language": { "type": "string" },
-							"serviceArea": { "type": "string" },
-							"expertise": { "type": "string" },
-							"officeName": { "type": "string" }
-						},
-						"required": [ "event" ]
+							"expertise":   { "type": "string" },
+							"language":    { "type": "string" },
+							"officeName":  { "type": "string" },
+							"serviceArea": { "type": "string" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"searchedListings": {
 				"description": "Ran a listing search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.searchedListings" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.searchedListings" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
@@ -369,8 +379,13 @@
 				"type": "object",
 				"properties": {
 					"event": { "enum": [ "realestate.searchedOffices" ] },
-					"officeName": { "type": "string" },
-					"serviceArea": { "type": "string" }
+					"data": {
+						"type": "object",
+						"properties": {
+							"officeName":  { "type": "string" },
+							"serviceArea": { "type": "string" }
+						}
+					}
 				},
 				"required": [ "event" ]
 			}
@@ -379,312 +394,322 @@
 			"savedListing": {
 				"description": "Saved a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.savedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.savedListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"savedSearch": {
 				"description": "Saved a search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.savedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.savedSearch" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"sharedListingEmail": {
 				"description": "Shared a listing by email",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.sharedListingEmail" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.sharedListingEmail" ] },
-							"toEmail": {
-								"type": "string",
-								"format": "email"
-							},
+							"toEmail":   { "type": "string", "format": "email" },
+							"listing":   { "$ref": "#/definitions/listing" },
 							"fromEmail": { "type": "string", "format": "email" }
-						},
-						"required": [ "event" ]
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"sharedListingFacebook": {
 				"description": "Shared a listing with Facebook",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.sharedListingFacebook" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.sharedListingFacebook" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"sharedListingTwitter": {
 				"description": "Shared a listing with Twitter",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.sharedListingTwitter" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.sharedListingTwitter" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"submittedAgentContactForm": {
 				"description": "Submitted agent contact form",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/person" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.submittedAgentContactForm" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.submittedAgentContactForm" ] },
-							"agentId": { "type": "string" },
-							"email": {
-								"type": "string",
-								"format": "email"
+							"agentId":    { "type": "string" },
+							"customer":   {
+								"type": "object",
+								"allOf": [
+									{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
+									{ "required": [ "firstName", "lastName" ] }
+								]
 							},
+							"email":      { "type": "string", "format": "email" },
 							"formFields": { "type": "string" }
 						},
-						"required": [
-							"event",
-							"firstName",
-							"lastName",
-							"agentId",
-							"email",
-							"formFields"
-						]
+						"required": [ "agentId", "email", "formFields" ]
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"subscribedListingUpdates": {
 				"description": "Subscribed to listing updates",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.subscribedListingUpdates" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.subscribedListingUpdates" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"subscribedSearch": {
 				"description": "Subscribed to a search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.subscribedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.subscribedSearch" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"unhidListing": {
 				"description": "Unhid listing from search results",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.unhidListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.unhidListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"unsubscribedListingUpdates": {
 				"description": "Unsubscribed from listing updates",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.unsubscribedListingUpdates" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.unsubscribedListingUpdates" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"unsubscribedSearch": {
 				"description": "Unsubscribed from a search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.unsubscribedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.unsubscribedSearch" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"updatedSavedSearch": {
 				"description": "Updated a saved search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.updatedSavedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.updatedSavedSearch" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedAgentProfile": {
 				"description": "Viewed an agent profile",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/person" },
-					{
-						"properties": {
-							"event": { "enum": [ "realestate.viewedAgentProfile" ] },
-							"agentId": { "type": "string" },
-							"agentEmail": {
-								"type": "string",
-								"format": "email"
-							}
-						},
-						"required": [
-							"event",
-							"firstName",
-							"lastName"
-						]
+				"properties": {
+					"event": { "enum": [ "realestate.viewedAgentProfile" ] },
+					"data":  {
+						"type": "object",
+						"agent": {
+							"type": "object",
+							"allOf": [
+								{ "$ref": "https://cdn.brytecore.com/packages/schemas/userAccount.json#" },
+								{
+									"required": [ "firstName", "lastName" ]
+								}
+							]
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedDrivingDirections": {
 				"description": "Viewed driving directions",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedDrivingDirections" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedDrivingDirections" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedListingPhoto": {
 				"description": "Viewed a listing photo",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedListingPhoto" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedLargeListingPhoto" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedListing": {
 				"description": "Viewed a listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedListing" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedListing3DTour": {
 				"description": "Viewed a 3D tour",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedListing3DTour" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedListing3DTour" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedListingFlyer": {
 				"description": "Viewed a listing flyer",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedListingFlyer" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedListingFlyer" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedListingVirtualTour": {
 				"description": "Viewed a virtual tour",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedListingVirtualTour" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedListingVirtualTour" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
@@ -693,44 +718,48 @@
 				"type": "object",
 				"properties": {
 					"event": { "enum": [ "realestate.viewedOfficeProfile" ] },
-					"officeId": { "type": "string" },
-					"officeName": { "type": "string" }
+					"data": {
+						"type": "object",
+						"properties": {
+							"officeId": { "type": "string" },
+							"officeName": { "type": "string" }
+						},
+						"required": [ "officeId", "officeName" ]
+					}
 				},
-				"required": [
-					"event",
-					"officeId",
-					"officeName"
-				]
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedSavedListing": {
 				"description": "Viewed a saved listing",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/listing" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedSavedListing" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedListingVirtualTour" ] }
-						},
-						"required": [ "event" ]
+							"listing": { "$ref": "#/definitions/listing" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		},
 		{
 			"viewedSavedSearch": {
 				"description": "Viewed a saved search",
 				"type": "object",
-				"allOf": [
-					{ "$ref": "#/definitions/search" },
-					{
+				"properties": {
+					"event": { "enum": [ "realestate.viewedSavedSearch" ] },
+					"data":  {
+						"type": "object",
 						"properties": {
-							"event": { "enum": [ "realestate.viewedSavedSearch" ] }
-						},
-						"required": [ "event" ]
+							"search": { "$ref": "#/definitions/search" }
+						}
 					}
-				]
+				},
+				"required": [ "event", "data" ]
 			}
 		}
 	]
