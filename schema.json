@@ -83,6 +83,7 @@
 							"data": {
 								"type": "object",
 								"properties": {
+									"custom":             { "type": "object" },
 									"userClassification": { "enum": [ "agent", "staff", "visitor" ] }
 								}
 							}
@@ -100,6 +101,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":      { "type": "object" },
 							"downPayment": { "type": "number" },
 							"listing":     { "$ref": "#/definitions/listing" },
 							"price":       { "type": "number" },
@@ -120,6 +122,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -136,6 +139,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -152,6 +156,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" },
 							"reason":  { "type": "string" }
 						},
@@ -170,6 +175,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -186,6 +192,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" },
 							"reason":  { "type": "string" }
 						},
@@ -204,6 +211,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -220,6 +228,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":       { "type": "object" },
 							"listing":      { "$ref": "#/definitions/listing" },
 							"startAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" }
 						}
@@ -237,6 +246,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -253,6 +263,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -269,6 +280,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -292,7 +304,8 @@
 										"required": [ "streetAddress", "city", "stateProvince", "postalCode" ]
 									}
 								]
-							}
+							},
+							"custom":  { "type": "object" }
 						}
 					}
 				},
@@ -308,6 +321,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" },
 							"rating":  { "type": "string" }
 						},
@@ -326,6 +340,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -342,6 +357,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -358,6 +374,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -374,6 +391,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":      { "type": "object" },
 							"expertise":   { "type": "string" },
 							"language":    { "type": "string" },
 							"officeName":  { "type": "string" },
@@ -393,6 +411,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -409,6 +428,7 @@
 					"data": {
 						"type": "object",
 						"properties": {
+							"custom":      { "type": "object" },
 							"officeName":  { "type": "string" },
 							"serviceArea": { "type": "string" }
 						}
@@ -426,6 +446,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -442,6 +463,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -458,6 +480,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":    { "type": "object" },
 							"toEmail":   { "type": "string", "format": "email" },
 							"listing":   { "$ref": "#/definitions/listing" },
 							"fromEmail": { "type": "string", "format": "email" }
@@ -476,6 +499,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -492,6 +516,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -509,6 +534,7 @@
 						"type": "object",
 						"properties": {
 							"agentId":    { "type": "string" },
+							"custom":     { "type": "object" },
 							"customer":   {
 								"type": "object",
 								"allOf": [
@@ -534,6 +560,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -550,6 +577,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -566,6 +594,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -582,6 +611,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -598,6 +628,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -614,6 +645,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom": { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
@@ -629,14 +661,17 @@
 					"event": { "enum": [ "realestate.viewedAgentProfile" ] },
 					"data":  {
 						"type": "object",
-						"agent": {
-							"type": "object",
-							"allOf": [
-								{ "$ref": "https://cdn.brytecore.com/packages/schemas/userAccount.json#" },
-								{
-									"required": [ "firstName", "lastName" ]
-								}
-							]
+						"properties": {
+							"agent": {
+								"type": "object",
+								"allOf": [
+									{ "$ref": "https://cdn.brytecore.com/packages/schemas/userAccount.json#" },
+									{
+										"required": [ "firstName", "lastName" ]
+									}
+								]
+							},
+							"custom": { "type": "object" }
 						}
 					}
 				},
@@ -652,6 +687,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -668,6 +704,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -684,6 +721,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -700,6 +738,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -716,6 +755,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -732,6 +772,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -748,7 +789,8 @@
 					"data": {
 						"type": "object",
 						"properties": {
-							"officeId": { "type": "string" },
+							"custom":     { "type": "object" },
+							"officeId":   { "type": "string" },
 							"officeName": { "type": "string" }
 						},
 						"required": [ "officeId", "officeName" ]
@@ -766,6 +808,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"listing": { "$ref": "#/definitions/listing" }
 						}
 					}
@@ -782,6 +825,7 @@
 					"data":  {
 						"type": "object",
 						"properties": {
+							"custom":  { "type": "object" },
 							"search": { "$ref": "#/definitions/search" }
 						}
 					}
