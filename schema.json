@@ -44,6 +44,7 @@
 				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
 				"halfBathsMax": { "type": "number" },
 				"halfBathsMin": { "type": "number" },
+				"id": { "type": "string" },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
 				"isForeclosure": { "type": "boolean" },
@@ -61,8 +62,7 @@
 				"schoolElementary": { "type": "string" },
 				"schoolHigh": { "type": "string" },
 				"schoolMiddle": { "type": "string" },
-				"searchId": { "type": "string" },
-				"searchString": { "type": "string" },
+				"searchURL": { "type": "string" },
 				"subdivision": { "type": "string" },
 				"yearBuiltMax": { "type": "number" },
 				"yearBuiltMin": { "type": "number" }
