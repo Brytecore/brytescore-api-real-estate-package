@@ -12,10 +12,19 @@
 				"fullBaths": { "type": "number" },
 				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
 				"halfBaths": { "type": "number" },
+				"isAcreage": { "type": "boolean" },
+				"isCondo": { "type": "boolean" },
+				"isLot": { "type": "boolean" },
+				"isRental": { "type": "boolean" },
+				"isSingleFamily": { "type": "boolean" },
 				"mlsId": { "type": "string" },
 				"listingURL": { "type": "string", "format": "uri" },
 				"photoURL": { "type": "string", "format": "uri" },
-				"price": { "type": "number" }
+				"price": { "type": "number" },
+				"schoolElementary": { "type": "string" },
+				"schoolHigh": { "type": "string" },
+				"schoolMiddle": { "type": "string" },
+				"subdivision": { "type": "string" }
 			},
 			"required": [ "price", "mlsId" ]
 		},
