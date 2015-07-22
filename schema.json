@@ -49,9 +49,9 @@
 				"radiusInMiles": { "type": "number" },
 				"radiusSearchAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
 				"resultsCount": { "type": "number" },
-				"schoolElementary": { "type": "string" }
-				"schoolHigh": { "type": "string" }
-				"schoolMiddle": { "type": "string" }
+				"schoolElementary": { "type": "string" },
+				"schoolHigh": { "type": "string" },
+				"schoolMiddle": { "type": "string" },
 				"searchId": { "type": "string" },
 				"searchString": { "type": "string" },
 				"subdivision": { "type": "string" },
