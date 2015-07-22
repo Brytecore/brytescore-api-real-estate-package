@@ -62,7 +62,7 @@
 				"schoolElementary": { "type": "string" },
 				"schoolHigh": { "type": "string" },
 				"schoolMiddle": { "type": "string" },
-				"searchURL": { "type": "string" },
+				"searchURL": { "type": "string", "format": "uri"  },
 				"subdivision": { "type": "string" },
 				"yearBuiltMax": { "type": "number" },
 				"yearBuiltMin": { "type": "number" }
