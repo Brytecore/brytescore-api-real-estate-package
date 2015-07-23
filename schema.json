@@ -32,6 +32,23 @@
 			},
 			"required": [ "price", "mlsId" ]
 		},
+		"realEstateForm": {
+			"description": "A user-submitted data entry form with real estate fields",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "https://cdn.brytecore.com/packages/schemas/form.json#"
+				},
+				{
+					"properties": {
+						"agentName": { "type": "string" },
+						"isPrequalified": { "type": "boolean" },
+						"isWorkingWithAgent": { "type": "boolean" },
+						"relatedListing": { "$ref": "#/definitions/listing" }
+					}
+				}
+			]
+		},
 		"search": {
 			"description": "A real estate listing search",
 			"type": "object",
@@ -78,7 +95,7 @@
 	"oneOf": [
 		{
 			"title": "authenticated",
-			"description": "",
+			"description": "User authenticated against website database",
 			"type": "object",
 			"allOf": [
 				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/authenticated" },
@@ -107,11 +124,12 @@
 							"type": "object",
 							"properties": {
 								"downPayment": { "type": "number" },
-								"listing":     { "$ref": "#/definitions/listing" },
-								"price":       { "type": "number" },
-								"rate":        { "type": "number" }
-							},
-							"required": [ "price", "downPayment", "rate" ]
+								"listing": { "$ref": "#/definitions/listing" },
+								"payment": { "type": "number" },
+								"price": { "type": "number" },
+								"rate": { "type": "number" },
+								"term": { "type": "number" }
+							}
 						}
 					}
 				}
@@ -169,8 +187,7 @@
 							"properties": {
 								"listing": { "$ref": "#/definitions/listing" },
 								"reason":  { "type": "string" }
-							},
-							"required": [ "reason" ]
+							}
 						}
 					}
 				}
@@ -209,8 +226,7 @@
 							"properties": {
 								"listing": { "$ref": "#/definitions/listing" },
 								"reason":  { "type": "string" }
-							},
-							"required": [ "reason" ]
+							}
 						}
 					}
 				}
@@ -228,7 +244,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": { "$ref": "#/definitions/listing" },
+								"searchURL": { "type": "string" }
 							}
 						}
 					}
@@ -324,14 +341,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"address": {
-									"allOf": [
-										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
-										{
-											"required": [ "streetAddress", "city", "stateProvince", "postalCode" ]
-										}
-									]
-								}
+								"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+								"form": { "$ref": "#/definitions/realEstateForm" }
 							}
 						}
 					}
@@ -371,7 +382,7 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"form": { "$ref": "#/definitions/realEstateForm" }
 							}
 						}
 					}
@@ -390,7 +401,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"form": { "$ref": "#/definitions/realEstateForm" },
+								"requestedDateTime": { "type": "string", "format": "date-time" }
 							}
 						}
 					}
@@ -527,9 +539,7 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"toEmail":   { "type": "string", "format": "email" },
-								"listing":   { "$ref": "#/definitions/listing" },
-								"fromEmail": { "type": "string", "format": "email" }
+								"form": { "$ref": "#/definitions/realEstateForm" }
 							}
 						}
 					}
@@ -586,18 +596,9 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"agentId":    { "type": "string" },
-								"customer":   {
-									"type": "object",
-									"allOf": [
-										{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
-										{ "required": [ "firstName", "lastName" ] }
-									]
-								},
-								"email":      { "type": "string", "format": "email" },
-								"formFields": { "type": "string" }
-							},
-							"required": [ "agentId", "email", "formFields" ]
+								"agentId": { "type": "string" },
+								"form": { "$ref": "https://cdn.brytecore.com/packages/schemas/form.json#" }
+							}
 						}
 					}
 				}
@@ -615,6 +616,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
+								"email": { "type": "string", "format": "email" },
+								"frequency": { "type": "string" },
 								"listing": { "$ref": "#/definitions/listing" }
 							}
 						}
@@ -634,6 +637,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
+								"email": { "type": "string", "format": "email" },
+								"frequency": { "type": "string" },
 								"search": { "$ref": "#/definitions/search" }
 							}
 						}
@@ -732,9 +737,12 @@
 								"agent": {
 									"type": "object",
 									"allOf": [
-										{ "$ref": "https://cdn.brytecore.com/packages/schemas/userAccount.json#" },
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
 										{
-											"required": [ "firstName", "lastName" ]
+											"properties": {
+												"agentId": { "type": "string" },
+												"email": { "type": "string", "format": "email" }
+											}
 										}
 									]
 								}
@@ -756,7 +764,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": { "$ref": "#/definitions/listing" },
+								"startAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" }
 							}
 						}
 					}
@@ -775,7 +784,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": { "$ref": "#/definitions/listing" },
+								"viewedPhotoURL": { "type": "string", "format": "uri" }
 							}
 						}
 					}
@@ -813,7 +823,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": { "$ref": "#/definitions/listing" },
+								"tourURL": { "type": "string", "format": "uri" }
 							}
 						}
 					}
@@ -851,7 +862,8 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": { "$ref": "#/definitions/listing" },
+								"tourURL": { "type": "string", "format": "uri" }
 							}
 						}
 					}
@@ -870,10 +882,11 @@
 						"data": {
 							"type": "object",
 							"properties": {
-								"officeId":   { "type": "string" },
-								"officeName": { "type": "string" }
+								"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+								"id":   { "type": "string" },
+								"name": { "type": "string" }
 							},
-							"required": [ "officeId", "officeName" ]
+							"required": [ "officeName" ]
 						}
 					}
 				}
