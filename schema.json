@@ -9,6 +9,7 @@
 			"properties": {
 				"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
 				"bedrooms": { "type": "number" },
+				"features": { "type": "array",  "items": { "type": "string" } },
 				"fullBaths": { "type": "number" },
 				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
 				"halfBaths": { "type": "number" },
@@ -26,6 +27,7 @@
 				"schoolElementary": { "type": "string" },
 				"schoolHigh": { "type": "string" },
 				"schoolMiddle": { "type": "string" },
+				"squareFeet": { "type": "number" },
 				"subdivision": { "type": "string" }
 			},
 			"required": [ "price", "mlsId" ]
