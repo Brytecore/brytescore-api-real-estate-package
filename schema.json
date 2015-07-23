@@ -439,12 +439,18 @@
 						"event": { "enum": [ "realestate.searchedAgents" ] },
 						"data":  {
 							"type": "object",
-							"properties": {
-								"expertise":   { "type": "string" },
-								"language":    { "type": "string" },
-								"officeName":  { "type": "string" },
-								"serviceArea": { "type": "string" }
-							}
+							"allOf": [
+								{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
+								{
+									"properties": {
+										"expertise": { "type": "string" },
+										"language": { "type": "string" },
+										"officeName": { "type": "string" },
+										"searchURL": { "type": "string", "format": "uri" },
+										"serviceArea": { "type": "string" }
+									}
+								}
+							]
 						}
 					}
 				}
