@@ -111,6 +111,13 @@
 				}
 			]
 		},
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/brytescoreUUIDCreated" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/heartBeat" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/pageView" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/registeredAccount" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/sessionStarted" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/submittedForm" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/updatedUserInfo" }
 		{
 			"title": "calculatedMortgagePayment",
 			"description": "Calculated a mortgage payment",
