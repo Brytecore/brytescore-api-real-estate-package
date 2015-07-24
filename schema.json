@@ -889,8 +889,8 @@
 							"type": "object",
 							"properties": {
 								"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
-								"id":   { "type": "string" },
-								"name": { "type": "string" }
+								"officeId":   { "type": "string" },
+								"officeName": { "type": "string" }
 							},
 							"required": [ "officeName" ]
 						}
