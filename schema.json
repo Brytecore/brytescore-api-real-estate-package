@@ -417,7 +417,7 @@
 				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
 				{
 					"properties": {
-						"event": { "enum": [ "realestate.quickSearched" ] },
+						"event": { "enum": [ "realestate.quickSearchedListings" ] },
 						"data":  {
 							"type": "object",
 							"properties": {
