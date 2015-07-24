@@ -410,7 +410,7 @@
 			]
 		},
 		{
-			"title": "quickSearched",
+			"title": "quickSearchedListings",
 			"description": "Ran a quick search",
 			"type": "object",
 			"allOf": [
