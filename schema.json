@@ -90,10 +90,9 @@
 				"yearBuiltMax": { "type": "number" },
 				"yearBuiltMin": { "type": "number" }
 			}
-		}
-	},
-	"oneOf": [
-		{
+		},
+
+		"authenticated": {
 			"title": "authenticated",
 			"description": "User authenticated against website database",
 			"type": "object",
@@ -111,14 +110,7 @@
 				}
 			]
 		},
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/brytescoreUUIDCreated" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/heartBeat" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/pageView" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/registeredAccount" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/sessionStarted" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/submittedForm" },
-		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/updatedUserInfo" },
-		{
+		"calculatedMortgagePayment": {
 			"title": "calculatedMortgagePayment",
 			"description": "Calculated a mortgage payment",
 			"type": "object",
@@ -142,7 +134,7 @@
 				}
 			]
 		},
-		{
+		"deletedSavedListing": {
 			"title": "deletedSavedListing",
 			"description": "Deleted a saved listing",
 			"type": "object",
@@ -161,7 +153,7 @@
 				}
 			]
 		},
-		{
+		"deletedSavedSearch": {
 			"title": "deletedSavedSearch",
 			"description": "Deleted a saved search",
 			"type": "object",
@@ -180,7 +172,7 @@
 				}
 			]
 		},
-		{
+		"dislikedListing": {
 			"title": "dislikedListing",
 			"description": "Disliked a listing",
 			"type": "object",
@@ -200,7 +192,7 @@
 				}
 			]
 		},
-		{
+		"hidListing": {
 			"title": "hidListing",
 			"description": "Hid a listing from search results",
 			"type": "object",
@@ -219,7 +211,7 @@
 				}
 			]
 		},
-		{
+		"likedListing": {
 			"title": "likedListing",
 			"description": "Liked a listing",
 			"type": "object",
@@ -239,7 +231,7 @@
 				}
 			]
 		},
-		{
+		"listingImpression": {
 			"title": "listingImpression",
 			"description": "Listing displayed in search results",
 			"type": "object",
@@ -259,7 +251,7 @@
 				}
 			]
 		},
-		{
+		"printedDrivingDirections": {
 			"title": "printedDrivingDirections",
 			"description": "Printed driving directions",
 			"type": "object",
@@ -279,7 +271,7 @@
 				}
 			]
 		},
-		{
+		"printedListing": {
 			"title": "printedListing",
 			"description": "Printed a listing",
 			"type": "object",
@@ -298,7 +290,7 @@
 				}
 			]
 		},
-		{
+		"printedListingFlyer": {
 			"title": "printedListingFlyer",
 			"description": "Printed a listing flyer",
 			"type": "object",
@@ -317,7 +309,7 @@
 				}
 			]
 		},
-		{
+		"printedSearchResults": {
 			"title": "printedSearchResults",
 			"description": "Printed search results",
 			"type": "object",
@@ -336,7 +328,7 @@
 				}
 			]
 		},
-		{
+		"requestedHomeAppraisal": {
 			"title": "requestedHomeAppraisal",
 			"description": "Requested home appraisal",
 			"type": "object",
@@ -356,7 +348,7 @@
 				}
 			]
 		},
-		{
+		"ratedListing": {
 			"title": "ratedListing",
 			"description": "Rated a listing",
 			"type": "object",
@@ -377,7 +369,7 @@
 				}
 			]
 		},
-		{
+		"requestedInfo": {
 			"title": "requestedInfo",
 			"description": "Requested more information on a listing",
 			"type": "object",
@@ -396,7 +388,7 @@
 				}
 			]
 		},
-		{
+		"requestedShowing": {
 			"title": "requestedShowing",
 			"description": "Requested a showing",
 			"type": "object",
@@ -416,7 +408,7 @@
 				}
 			]
 		},
-		{
+		"quickSearchedListings": {
 			"title": "quickSearchedListings",
 			"description": "Ran a quick search",
 			"type": "object",
@@ -435,7 +427,7 @@
 				}
 			]
 		},
-		{
+		"searchedAgents": {
 			"title": "searchedAgents",
 			"description": "Searched for an agent",
 			"type": "object",
@@ -463,7 +455,7 @@
 				}
 			]
 		},
-		{
+		"searchedListings": {
 			"title": "searchedListings",
 			"description": "Ran a listing search",
 			"type": "object",
@@ -482,7 +474,7 @@
 				}
 			]
 		},
-		{
+		"searchedOffices": {
 			"title": "searchedOffices",
 			"description": "Searched for an office",
 			"type": "object",
@@ -502,7 +494,7 @@
 				}
 			]
 		},
-		{
+		"savedListing": {
 			"title": "savedListing",
 			"description": "Saved a listing",
 			"type": "object",
@@ -521,7 +513,7 @@
 				}
 			]
 		},
-		{
+		"savedSearch": {
 			"title": "savedSearch",
 			"description": "Saved a search",
 			"type": "object",
@@ -540,7 +532,7 @@
 				}
 			]
 		},
-		{
+		"sharedListingEmail": {
 			"title": "sharedListingEmail",
 			"description": "Shared a listing by email",
 			"type": "object",
@@ -559,7 +551,7 @@
 				}
 			]
 		},
-		{
+		"sharedListingFacebook": {
 			"title": "sharedListingFacebook",
 			"description": "Shared a listing with Facebook",
 			"type": "object",
@@ -578,7 +570,7 @@
 				}
 			]
 		},
-		{
+		"sharedListingTwitter": {
 			"title": "sharedListingTwitter",
 			"description": "Shared a listing with Twitter",
 			"type": "object",
@@ -597,7 +589,7 @@
 				}
 			]
 		},
-		{
+		"submittedAgentContactForm": {
 			"title": "submittedAgentContactForm",
 			"description": "Submitted agent contact form",
 			"type": "object",
@@ -617,7 +609,7 @@
 				}
 			]
 		},
-		{
+		"subscribedListingUpdates": {
 			"title": "subscribedListingUpdates",
 			"description": "Subscribed to listing updates",
 			"type": "object",
@@ -638,7 +630,7 @@
 				}
 			]
 		},
-		{
+		"subscribedSearch": {
 			"title": "subscribedSearch",
 			"description": "Subscribed to a search",
 			"type": "object",
@@ -659,7 +651,7 @@
 				}
 			]
 		},
-		{
+		"unhidListing": {
 			"title": "unhidListing",
 			"description": "Unhid listing from search results",
 			"type": "object",
@@ -678,7 +670,7 @@
 				}
 			]
 		},
-		{
+		"unsubscribedListingUpdates": {
 			"title": "unsubscribedListingUpdates",
 			"description": "Unsubscribed from listing updates",
 			"type": "object",
@@ -697,7 +689,7 @@
 				}
 			]
 		},
-		{
+		"unsubscribedSearch": {
 			"title": "unsubscribedSearch",
 			"description": "Unsubscribed from a search",
 			"type": "object",
@@ -716,7 +708,7 @@
 				}
 			]
 		},
-		{
+		"updatedSavedSearch": {
 			"title": "updatedSavedSearch",
 			"description": "Updated a saved search",
 			"type": "object",
@@ -735,7 +727,7 @@
 				}
 			]
 		},
-		{
+		"viewedAgentProfile": {
 			"title": "viewedAgentProfile",
 			"description": "Viewed an agent profile",
 			"type": "object",
@@ -765,7 +757,7 @@
 				}
 			]
 		},
-		{
+		"viewedDrivingDirections": {
 			"title": "viewedDrivingDirections",
 			"description": "Viewed driving directions",
 			"type": "object",
@@ -785,7 +777,7 @@
 				}
 			]
 		},
-		{
+		"viewedListingPhoto": {
 			"title": "viewedListingPhoto",
 			"description": "Viewed a listing photo",
 			"type": "object",
@@ -805,7 +797,7 @@
 				}
 			]
 		},
-		{
+		"viewedListing": {
 			"title": "viewedListing",
 			"description": "Viewed a listing",
 			"type": "object",
@@ -824,7 +816,7 @@
 				}
 			]
 		},
-		{
+		"viewedListing3DTour": {
 			"title": "viewedListing3DTour",
 			"description": "Viewed a 3D tour",
 			"type": "object",
@@ -844,7 +836,7 @@
 				}
 			]
 		},
-		{
+		"viewedListingFlyer": {
 			"title": "viewedListingFlyer",
 			"description": "Viewed a listing flyer",
 			"type": "object",
@@ -863,7 +855,7 @@
 				}
 			]
 		},
-		{
+		"viewedListingVirtualTour": {
 			"title": "viewedListingVirtualTour",
 			"description": "Viewed a virtual tour",
 			"type": "object",
@@ -883,7 +875,7 @@
 				}
 			]
 		},
-		{
+		"viewedOfficeProfile": {
 			"title": "viewedOfficeProfile",
 			"description": "Viewed an office profile",
 			"type": "object",
@@ -905,7 +897,7 @@
 				}
 			]
 		},
-		{
+		"viewedSavedListing": {
 			"title": "viewedSavedListing",
 			"description": "Viewed a saved listing",
 			"type": "object",
@@ -924,7 +916,7 @@
 				}
 			]
 		},
-		{
+		"viewedSavedSearch": {
 			"title": "viewedSavedSearch",
 			"description": "Viewed a saved search",
 			"type": "object",
@@ -943,5 +935,56 @@
 				}
 			]
 		}
+	},
+	"oneOf": [
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/brytescoreUUIDCreated" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/heartBeat" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/pageView" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/registeredAccount" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/sessionStarted" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/submittedForm" },
+		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/updatedUserInfo" },
+		{ "$ref": "#/definitions/authenticated" },
+		{ "$ref": "#/definitions/calculatedMortgagePayment" },
+		{ "$ref": "#/definitions/deletedSavedListing" },
+		{ "$ref": "#/definitions/deletedSavedSearch" },
+		{ "$ref": "#/definitions/dislikedListing" },
+		{ "$ref": "#/definitions/hidListing" },
+		{ "$ref": "#/definitions/likedListing" },
+		{ "$ref": "#/definitions/listingImpression" },
+		{ "$ref": "#/definitions/printedDrivingDirections" },
+		{ "$ref": "#/definitions/printedListing" },
+		{ "$ref": "#/definitions/printedListingFlyer" },
+		{ "$ref": "#/definitions/printedSearchResults" },
+		{ "$ref": "#/definitions/requestedHomeAppraisal" },
+		{ "$ref": "#/definitions/ratedListing" },
+		{ "$ref": "#/definitions/requestedInfo" },
+		{ "$ref": "#/definitions/requestedShowing" },
+		{ "$ref": "#/definitions/quickSearchedListings" },
+		{ "$ref": "#/definitions/searchedAgents" },
+		{ "$ref": "#/definitions/searchedListings" },
+		{ "$ref": "#/definitions/searchedOffices" },
+		{ "$ref": "#/definitions/savedListing" },
+		{ "$ref": "#/definitions/savedSearch" },
+		{ "$ref": "#/definitions/sharedListingEmail" },
+		{ "$ref": "#/definitions/sharedListingFacebook" },
+		{ "$ref": "#/definitions/sharedListingTwitter" },
+		{ "$ref": "#/definitions/submittedAgentContactForm" },
+		{ "$ref": "#/definitions/subscribedListingUpdates" },
+		{ "$ref": "#/definitions/subscribedSearch" },
+		{ "$ref": "#/definitions/unhidListing" },
+		{ "$ref": "#/definitions/unsubscribedListingUpdates" },
+		{ "$ref": "#/definitions/unsubscribedSearch" },
+		{ "$ref": "#/definitions/updatedSavedSearch" },
+		{ "$ref": "#/definitions/viewedAgentProfile" },
+		{ "$ref": "#/definitions/viewedDrivingDirections" },
+		{ "$ref": "#/definitions/viewedListingPhoto" },
+		{ "$ref": "#/definitions/viewedListing" },
+		{ "$ref": "#/definitions/viewedListing3DTour" },
+		{ "$ref": "#/definitions/viewedListingFlyer" },
+		{ "$ref": "#/definitions/viewedListingVirtualTour" },
+		{ "$ref": "#/definitions/viewedOfficeProfile" },
+		{ "$ref": "#/definitions/viewedSavedListing" },
+		{ "$ref": "#/definitions/viewedSavedSearch" }
 	]
 }
