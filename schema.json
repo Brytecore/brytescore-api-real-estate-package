@@ -7,11 +7,21 @@
 			"description": "A real estate listing",
 			"type": "object",
 			"properties": {
-				"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+				"address": {
+					"oneOf": [
+						{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+						{ "type": "null" }
+					]
+				},
 				"bedrooms": { "type": "number" },
-				"features": { "type": "array",  "items": { "type": "string" } },
+				"features": { "type": [ "array", "null" ],  "items": { "type": "string" } },
 				"fullBaths": { "type": "number" },
-				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
+				"geoLocation": {
+					"oneOf": [
+						{ "$ref": "http://json-schema.org/geo#" },
+						{ "type": "null" }
+					]
+				},
 				"halfBaths": { "type": "number" },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
@@ -21,14 +31,14 @@
 				"isRental": { "type": "boolean" },
 				"isSingleFamily": { "type": "boolean" },
 				"mlsId": { "type": "string" },
-				"listingURL": { "type": "string", "format": "uri" },
-				"photoURL": { "type": "string", "format": "uri" },
+				"listingURL": { "type": [ "string", "null" ], "format": "uri" },
+				"photoURL": { "type": [ "string", "null" ], "format": "uri" },
 				"price": { "type": "number" },
-				"schoolElementary": { "type": "string" },
-				"schoolHigh": { "type": "string" },
-				"schoolMiddle": { "type": "string" },
+				"schoolElementary": { "type": [ "string", "null" ] },
+				"schoolHigh": { "type": [ "string", "null" ] },
+				"schoolMiddle": { "type": [ "string", "null" ] },
 				"squareFeet": { "type": "number" },
-				"subdivision": { "type": "string" }
+				"subdivision": { "type": [ "string", "null" ] }
 			},
 			"required": [ "price", "mlsId" ]
 		},
@@ -41,10 +51,15 @@
 				},
 				{
 					"properties": {
-						"agentName": { "type": "string" },
+						"agentName": { "type": [ "string", "null" ] },
 						"isPrequalified": { "type": "boolean" },
 						"isWorkingWithAgent": { "type": "boolean" },
-						"relatedListing": { "$ref": "#/definitions/listing" }
+						"relatedListing": {
+							"oneOf": [
+								{ "$ref": "#/definitions/listing" },
+								{ "type": "null" }
+							]
+						}
 					}
 				}
 			]
@@ -53,19 +68,29 @@
 			"description": "A real estate listing search",
 			"type": "object",
 			"properties": {
-				"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+				"address": {
+					"oneOf": [
+						{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+						{ "type": "null" }
+					]
+				},
 				"bedroomsMin": { "type": "number" },
 				"bedroomsMax": { "type": "number" },
-				"cities": { "type": "array",  "items": { "type": "string" } },
-				"counties": { "type": "array",  "items": { "type": "string" } },
-				"description": { "type": "string" },
-				"features": { "type": "array",  "items": { "type": "string" } },
+				"cities": { "type": [ "array", "null" ], "items": { "type": "string" } },
+				"counties": { "type": [ "array", "null" ], "items": { "type": "string" } },
+				"description": { "type": [ "string", "null" ] },
+				"features": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"fullBathsMax": { "type": "number" },
 				"fullBathsMin": { "type": "number" },
-				"geoLocation": { "$ref": "http://json-schema.org/geo#" },
+				"geoLocation": {
+					"oneOf": [
+						{ "$ref": "http://json-schema.org/geo#" },
+						{ "type": "null" }
+					]
+				},
 				"halfBathsMax": { "type": "number" },
 				"halfBathsMin": { "type": "number" },
-				"id": { "type": "string" },
+				"id": { "type": [ "string", "null" ] },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
 				"isForeclosure": { "type": "boolean" },
@@ -74,19 +99,29 @@
 				"isRadiusSearch": { "type": "boolean" },
 				"isRental": { "type": "boolean" },
 				"isSingleFamily": { "type": "boolean" },
-				"mlsIds": { "type": "array",  "items": { "type": "string" } },
-				"postalCodes": { "type": "array",  "items": { "type": "string" } },
+				"mlsIds": { "type": [ "array", "null" ], "items": { "type": "string" } },
+				"postalCodes": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"priceMax": { "type": "number" },
 				"priceMin": { "type": "number" },
-				"radiusGeoLocation": { "$ref": "http://json-schema.org/geo#" },
+				"radiusGeoLocation": {
+					"oneOf": [
+						{ "$ref": "http://json-schema.org/geo#" },
+						{ "type": "null" }
+					]
+				},
 				"radiusInMiles": { "type": "number" },
-				"radiusSearchAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+				"radiusSearchAddress": {
+					"oneOf": [
+						{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+						{ "type": "null" }
+					]
+				},
 				"resultsCount": { "type": "number" },
-				"schoolElementary": { "type": "string" },
-				"schoolHigh": { "type": "string" },
-				"schoolMiddle": { "type": "string" },
-				"searchURL": { "type": "string", "format": "uri"  },
-				"subdivision": { "type": "string" },
+				"schoolElementary": { "type": [ "string", "null" ] },
+				"schoolHigh": { "type": [ "string", "null" ] },
+				"schoolMiddle": { "type": [ "string", "null" ] },
+				"searchURL": { "type": [ "string", "null" ], "format": "uri"  },
+				"subdivision": { "type": [ "string", "null" ] },
 				"yearBuiltMax": { "type": "number" },
 				"yearBuiltMin": { "type": "number" }
 			}
@@ -123,7 +158,12 @@
 							"type": "object",
 							"properties": {
 								"downPayment": { "type": "number" },
-								"listing": { "$ref": "#/definitions/listing" },
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
 								"payment": { "type": "number" },
 								"price": { "type": "number" },
 								"rate": { "type": "number" },
@@ -146,7 +186,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -165,7 +210,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -184,8 +234,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"reason":  { "type": "string" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"reason":  { "type": [ "string", "null" ] }
 							}
 						}
 					}
@@ -204,7 +259,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -223,8 +283,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"reason":  { "type": "string" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"reason": { "type": [ "string", "null" ] }
 							}
 						}
 					}
@@ -243,8 +308,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"searchURL": { "type": "string" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"searchURL": { "type": [ "string", "null" ] }
 							}
 						}
 					}
@@ -263,8 +333,18 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing":      { "$ref": "#/definitions/listing" },
-								"startAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"startAddress": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -283,7 +363,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -302,7 +387,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -321,7 +411,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -340,8 +435,18 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
-								"form": { "$ref": "#/definitions/realEstateForm" }
+								"address": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								},
+								"form": {
+									"oneOf": [
+										{ "$ref": "#/definitions/realEstateForm" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -360,7 +465,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
 								"rating":  { "type": "string" }
 							},
 							"required": [ "rating" ]
@@ -381,7 +491,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"form": { "$ref": "#/definitions/realEstateForm" }
+								"form": {
+									"oneOf": [
+										{ "$ref": "#/definitions/realEstateForm" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -400,8 +515,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"form": { "$ref": "#/definitions/realEstateForm" },
-								"requestedDateTime": { "type": "string", "format": "date-time" }
+								"form": {
+									"oneOf": [
+										{ "$ref": "#/definitions/realEstateForm" },
+										{ "type": "null" }
+									]
+								},
+								"requestedDateTime": { "type": [ "string", "null" ], "format": "date-time" }
 							}
 						}
 					}
@@ -420,7 +540,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -442,11 +567,11 @@
 								{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
 								{
 									"properties": {
-										"expertise": { "type": "string" },
-										"language": { "type": "string" },
-										"officeName": { "type": "string" },
-										"searchURL": { "type": "string", "format": "uri" },
-										"serviceArea": { "type": "string" }
+										"expertise": { "type": [ "string", "null" ] },
+										"language": { "type": [ "string", "null" ] },
+										"officeName": { "type": [ "string", "null" ] },
+										"searchURL": { "type": [ "string", "null" ], "format": "uri" },
+										"serviceArea": { "type": [ "string", "null" ] }
 									}
 								}
 							]
@@ -467,7 +592,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -486,8 +616,8 @@
 						"data": {
 							"type": "object",
 							"properties": {
-								"officeName":  { "type": "string" },
-								"serviceArea": { "type": "string" }
+								"officeName":  { "type": [ "string", "null" ] },
+								"serviceArea": { "type": [ "string", "null" ] }
 							}
 						}
 					}
@@ -506,7 +636,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -525,7 +660,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -544,7 +684,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"form": { "$ref": "#/definitions/realEstateForm" }
+								"form": {
+									"oneOf": [
+										{ "$ref": "#/definitions/realEstateForm" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -563,7 +708,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -582,7 +732,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -601,8 +756,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"agentId": { "type": "string" },
-								"form": { "$ref": "https://cdn.brytecore.com/packages/schemas/form.json#" }
+								"agentId": { "type": [ "string", "null" ] },
+								"form": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/form.json#" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -621,9 +781,14 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"email": { "type": "string", "format": "email" },
-								"frequency": { "type": "string" },
-								"listing": { "$ref": "#/definitions/listing" }
+								"email": { "type": [ "string", "null" ], "format": "email" },
+								"frequency": { "type": [ "string", "null" ] },
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -642,9 +807,14 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"email": { "type": "string", "format": "email" },
-								"frequency": { "type": "string" },
-								"search": { "$ref": "#/definitions/search" }
+								"email": { "type": [ "string", "null" ], "format": "email" },
+								"frequency": { "type": [ "string", "null" ] },
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -663,7 +833,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -682,7 +857,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -701,7 +881,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -720,7 +905,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -745,8 +935,8 @@
 										{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
 										{
 											"properties": {
-												"agentId": { "type": "string" },
-												"email": { "type": "string", "format": "email" }
+												"agentId": { "type": [ "string", "null" ] },
+												"email": { "type": [ "string", "null" ], "format": "email" }
 											}
 										}
 									]
@@ -769,8 +959,18 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"startAddress": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"startAddress": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -789,8 +989,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"viewedPhotoURL": { "type": "string", "format": "uri" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"viewedPhotoURL": { "type": [ "string", "null" ], "format": "uri" }
 							}
 						}
 					}
@@ -809,7 +1014,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -828,8 +1038,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"tourURL": { "type": "string", "format": "uri" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"tourURL": { "type": [ "string", "null" ], "format": "uri" }
 							}
 						}
 					}
@@ -848,7 +1063,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -867,8 +1087,13 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" },
-								"tourURL": { "type": "string", "format": "uri" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"tourURL": { "type": [ "string", "null" ], "format": "uri" }
 							}
 						}
 					}
@@ -887,8 +1112,13 @@
 						"data": {
 							"type": "object",
 							"properties": {
-								"address": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
-								"officeId":   { "type": "string" },
+								"address": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								},
+								"officeId":   { "type": [ "string", "null" ] },
 								"officeName": { "type": "string" }
 							},
 							"required": [ "officeName" ]
@@ -909,7 +1139,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"listing": { "$ref": "#/definitions/listing" }
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -928,7 +1163,12 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"search": { "$ref": "#/definitions/search" }
+								"search": {
+									"oneOf": [
+										{ "$ref": "#/definitions/search" },
+										{ "type": "null" }
+									]
+								}
 							}
 						}
 					}
@@ -936,6 +1176,7 @@
 			]
 		}
 	},
+
 	"oneOf": [
 		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/brytescoreUUIDCreated" },
 		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/heartBeat" },
