@@ -16,6 +16,12 @@
 				"bedrooms": { "type": "number" },
 				"features": { "type": [ "array", "null" ],  "items": { "type": "string" } },
 				"fullBaths": { "type": "number" },
+				"geoLocation": {
+					"oneOf": [
+						{ "$ref": "http://json-schema.org/geo#" },
+						{ "type": "null" }
+					]
+				},
 				"halfBaths": { "type": "number" },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
@@ -76,12 +82,6 @@
 				"features": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"fullBathsMax": { "type": "number" },
 				"fullBathsMin": { "type": "number" },
-				"geoLocation": {
-					"oneOf": [
-						{ "$ref": "http://json-schema.org/geo#" },
-						{ "type": "null" }
-					]
-				},
 				"halfBathsMax": { "type": "number" },
 				"halfBathsMin": { "type": "number" },
 				"id": { "type": [ "string", "null" ] },
