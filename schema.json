@@ -750,7 +750,7 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"agentId": { "type": [ "string", "null" ] },
+								"agentId": { "type": [ "string", "number", "null" ] },
 								"form": {
 									"oneOf": [
 										{ "$ref": "https://cdn.brytecore.com/packages/schemas/form.json#" },
@@ -929,7 +929,7 @@
 										{ "$ref": "https://cdn.brytecore.com/packages/schemas/person.json#" },
 										{
 											"properties": {
-												"agentId": { "type": [ "string", "null" ] },
+												"agentId": { "type": [ "string", "number", "null" ] },
 												"email": { "type": [ "string", "null" ], "format": "email" }
 											}
 										}
