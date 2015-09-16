@@ -168,6 +168,36 @@
 				}
 			]
 		},
+		"calculatedPropertyValuation": {
+			"title": "calculatedPropertyValuation",
+			"description": "Calculated a property valuation",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.calculatedPropertyValuation" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"address": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								},
+								"value": { "type": "number" },
+								"valueRangeLow": { "type": "number" },
+								"valueRangeHigh": { "type": "number" },
+								"zestimate": { "type": "number" },
+								"valuationURL": { "type": [ "string", "null" ], "format": "uri" },
+								"valuationModel": { "type": "string" }
+							}
+						}
+					}
+				}
+			]
+		},
 		"deletedSavedListing": {
 			"title": "deletedSavedListing",
 			"description": "Deleted a saved listing",
@@ -417,6 +447,62 @@
 				}
 			]
 		},
+		"ratedListing": {
+			"title": "ratedListing",
+			"description": "Rated a listing",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.ratedListing" ] },
+						"data":  {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"rating":  { "type": "string" }
+							},
+							"required": [ "rating" ]
+						}
+					}
+				}
+			]
+		},
+		"requestedCMA": {
+			"title": "requestedCMA",
+			"description": "Requested Comparative Market Analysis",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.requestedCMA" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"address": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								},
+								"form": {
+									"oneOf": [
+										{ "$ref": "#/definitions/realEstateForm" },
+										{ "type": "null" }
+									]
+								}
+							}
+						}
+					}
+				}
+			]
+		},
 		"requestedHomeAppraisal": {
 			"title": "requestedHomeAppraisal",
 			"description": "Requested home appraisal",
@@ -442,32 +528,6 @@
 									]
 								}
 							}
-						}
-					}
-				}
-			]
-		},
-		"ratedListing": {
-			"title": "ratedListing",
-			"description": "Rated a listing",
-			"type": "object",
-			"allOf": [
-				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
-				{
-					"properties": {
-						"event": { "enum": [ "realestate.ratedListing" ] },
-						"data":  {
-							"type": "object",
-							"properties": {
-								"listing": {
-									"oneOf": [
-										{ "$ref": "#/definitions/listing" },
-										{ "type": "null" }
-									]
-								},
-								"rating":  { "type": "string" }
-							},
-							"required": [ "rating" ]
 						}
 					}
 				}
@@ -1181,6 +1241,7 @@
 		{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/updatedUserInfo" },
 		{ "$ref": "#/definitions/authenticated" },
 		{ "$ref": "#/definitions/calculatedMortgagePayment" },
+		{ "$ref": "#/definitions/calculatedPropertyValuation" },
 		{ "$ref": "#/definitions/deletedSavedListing" },
 		{ "$ref": "#/definitions/deletedSavedSearch" },
 		{ "$ref": "#/definitions/dislikedListing" },
@@ -1191,8 +1252,9 @@
 		{ "$ref": "#/definitions/printedListing" },
 		{ "$ref": "#/definitions/printedListingFlyer" },
 		{ "$ref": "#/definitions/printedSearchResults" },
-		{ "$ref": "#/definitions/requestedHomeAppraisal" },
 		{ "$ref": "#/definitions/ratedListing" },
+		{ "$ref": "#/definitions/requestedCMA" },
+		{ "$ref": "#/definitions/requestedHomeAppraisal" },
 		{ "$ref": "#/definitions/requestedInfo" },
 		{ "$ref": "#/definitions/requestedShowing" },
 		{ "$ref": "#/definitions/quickSearchedListings" },
