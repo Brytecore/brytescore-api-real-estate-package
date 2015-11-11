@@ -835,7 +835,7 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"email": { "type": [ "string", "null" ], "format": "email" },
+								"email": { "type": [ "string", "null" ] },
 								"frequency": { "type": [ "string", "null" ] },
 								"listing": {
 									"oneOf": [
@@ -861,7 +861,7 @@
 						"data":  {
 							"type": "object",
 							"properties": {
-								"email": { "type": [ "string", "null" ], "format": "email" },
+								"email": { "type": [ "string", "null" ] },
 								"frequency": { "type": [ "string", "null" ] },
 								"search": {
 									"oneOf": [
@@ -990,7 +990,7 @@
 										{
 											"properties": {
 												"agentId": { "type": [ "string", "number", "null" ] },
-												"email": { "type": [ "string", "null" ], "format": "email" }
+												"email": { "type": [ "string", "null" ] }
 											}
 										}
 									]
