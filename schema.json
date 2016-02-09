@@ -14,12 +14,12 @@
 					]
 				},
 				"bedrooms": { "type": "number" },
-				"features": { "type": [ "array", "null" ],  "items": { "type": "string" } },
+				"features": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"fullBaths": { "type": "number" },
 				"geoLocation": {
 					"oneOf": [
 						{ "$ref": "http://json-schema.org/geo#" },
-						{ "type": "null" }
+						{ "type": [ "object", "null" ] }
 					]
 				},
 				"halfBaths": { "type": "number" },
