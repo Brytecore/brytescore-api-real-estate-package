@@ -9,7 +9,7 @@ leads and predicting user behaviors. This specific package is for the real estat
 
 Documentation on this package can be found in the [Brytescore API documentation](http://www.brytecore.com/docs/booster/real-estate).
 
-GitHub repo containing the [javascript library for integrating the Brytescore API.](https://github.com/Brytecore).
+GitHub repo containing the [javascript library for integrating the Brytescore API](https://github.com/Brytecore).
 
 ##License
 
