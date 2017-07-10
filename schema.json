@@ -13,16 +13,16 @@
 						{ "type": "null" }
 					]
 				},
-				"bedrooms": { "type": "number" },
+				"bedrooms": { "type": "integer" },
 				"features": { "type": [ "array", "null" ], "items": { "type": "string" } },
-				"fullBaths": { "type": "number" },
+				"fullBaths": { "type": "integer" },
 				"geoLocation": {
 					"oneOf": [
 						{ "$ref": "http://json-schema.org/geo#" },
 						{ "type": [ "object", "null" ] }
 					]
 				},
-				"halfBaths": { "type": "number" },
+				"halfBaths": { "type": "integer" },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
 				"isForeclosure": { "type": "boolean" },
@@ -79,16 +79,16 @@
 						{ "type": "null" }
 					]
 				},
-				"bedroomsMin": { "type": "number" },
-				"bedroomsMax": { "type": "number" },
+				"bedroomsMin": { "type": "integer" },
+				"bedroomsMax": { "type": "integer" },
 				"cities": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"counties": { "type": [ "array", "null" ], "items": { "type": "string" } },
 				"description": { "type": [ "string", "null" ] },
 				"features": { "type": [ "array", "null" ], "items": { "type": "string" } },
-				"fullBathsMax": { "type": "number" },
-				"fullBathsMin": { "type": "number" },
-				"halfBathsMax": { "type": "number" },
-				"halfBathsMin": { "type": "number" },
+				"fullBathsMax": { "type": "integer" },
+				"fullBathsMin": { "type": "integer" },
+				"halfBathsMax": { "type": "integer" },
+				"halfBathsMin": { "type": "integer" },
 				"id": { "type": [ "string", "null" ] },
 				"isAcreage": { "type": "boolean" },
 				"isCondo": { "type": "boolean" },
