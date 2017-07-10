@@ -32,7 +32,12 @@
 				"isSingleFamily": { "type": "boolean" },
 				"mlsId": { "type": "string" },
 				"listingURL": { "type": [ "string", "null" ], "format": "uri" },
-				"photoURL": { "type": [ "string", "null" ], "format": "uri" },
+				"photoURL": {
+					"oneOf": [
+						{ "type": [ "string", "null" ], "format": "uri" },
+						{ "enum": [ "" ] }
+					]
+				},
 				"price": { "type": "number" },
 				"schoolElementary": { "type": [ "string", "null" ] },
 				"schoolHigh": { "type": [ "string", "null" ] },
