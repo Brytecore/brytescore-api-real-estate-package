@@ -19,7 +19,7 @@
 				"geoLocation": {
 					"oneOf": [
 						{ "$ref": "http://json-schema.org/geo#" },
-						{ "type": [ "object", "null" ] }
+						{ "type": "null" }
 					]
 				},
 				"halfBaths": { "type": "integer" },
