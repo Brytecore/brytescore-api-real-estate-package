@@ -113,6 +113,9 @@
 		"viewedListingPhoto": {
 			"displayName": "Viewed Listing Photo"
 		},
+		"calculatedPropertyValuation": {
+			"displayName": "Calculated a Property Valuation"
+		},
 		"calculatedMortgagePayment": {
 			"displayName": "Calculated a Mortgage Payment"
 		},
@@ -130,6 +133,9 @@
 		},
 		"submittedAgentContactForm": {
 			"displayName": "Submitted Agent Contact Form"
+		},
+		"requestedCMA": {
+			"displayName": "Requested a CMA"
 		},
 		"requestedHomeAppraisal": {
 			"displayName": "Requested Home Appraisal"
