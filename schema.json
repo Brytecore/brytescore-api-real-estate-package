@@ -1048,31 +1048,6 @@
 				}
 			]
 		},
-		"viewedListingPhoto": {
-			"title": "viewedListingPhoto",
-			"description": "Viewed a listing photo",
-			"type": "object",
-			"allOf": [
-				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
-				{
-					"properties": {
-						"event": { "enum": [ "realestate.viewedListingPhoto" ] },
-						"data":  {
-							"type": "object",
-							"properties": {
-								"listing": {
-									"oneOf": [
-										{ "$ref": "#/definitions/listing" },
-										{ "type": "null" }
-									]
-								},
-								"viewedPhotoURL": { "type": [ "string", "null" ], "format": "uri" }
-							}
-						}
-					}
-				}
-			]
-		},
 		"viewedListing": {
 			"title": "viewedListing",
 			"description": "Viewed a listing",
@@ -1140,6 +1115,55 @@
 										{ "type": "null" }
 									]
 								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"viewedListingMap": {
+			"title": "viewedListingMap",
+			"description": "Viewed a listing map",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedListingMap" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"viewedListingPhoto": {
+			"title": "viewedListingPhoto",
+			"description": "Viewed a listing photo",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedListingPhoto" ] },
+						"data":  {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"viewedPhotoURL": { "type": [ "string", "null" ], "format": "uri" }
 							}
 						}
 					}
@@ -1292,10 +1316,11 @@
 		{ "$ref": "#/definitions/updatedSavedSearch" },
 		{ "$ref": "#/definitions/viewedAgentProfile" },
 		{ "$ref": "#/definitions/viewedDrivingDirections" },
-		{ "$ref": "#/definitions/viewedListingPhoto" },
 		{ "$ref": "#/definitions/viewedListing" },
 		{ "$ref": "#/definitions/viewedListing3DTour" },
 		{ "$ref": "#/definitions/viewedListingFlyer" },
+		{ "$ref": "#/definitions/viewedListingMap" },
+		{ "$ref": "#/definitions/viewedListingPhoto" },
 		{ "$ref": "#/definitions/viewedListingVirtualTour" },
 		{ "$ref": "#/definitions/viewedOfficeProfile" },
 		{ "$ref": "#/definitions/viewedSavedListing" },
