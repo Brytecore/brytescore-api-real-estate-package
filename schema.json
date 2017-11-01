@@ -3,6 +3,14 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"description": "A Brytescore API package schema to track real estate events",
 	"definitions": {
+		"geo": {
+			"description": "A geographical coordinate",
+			"type": "object",
+			"properties": {
+				"latitude": { "type": "number" },
+				"longitude": { "type": "number" }
+			}
+		},
 		"listing": {
 			"description": "A real estate listing",
 			"type": "object",
@@ -18,13 +26,7 @@
 				"fullBaths": { "type": "integer" },
 				"geoLocation": {
 					"oneOf": [
-						{
-							"type": "object",
-							"properties": {
-								"latitude": { "type": "number" },
-								"longitude": { "type": "number" }
-							}
-						},
+						{ "$ref": "#/definitions/geo" },
 						{ "type": "null" }
 					]
 				},
@@ -52,6 +54,18 @@
 				"subdivision": { "type": [ "string", "null" ] }
 			},
 			"required": [ "price", "mlsId" ]
+		},
+		"neighborhood": {
+			"description": "Neighborhoods are geographic communities within a town, suburb, city or rural area. Generally considered more social than legal, neighborhood boundaries may not be agreed upon by its residents.\nNeighborhoods are not the same as MLS-defined subdivisions, which are comprised of legally subdivided lots of land.",
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" },
+				"boundaries": {
+					"type": [ "array", "null" ],
+					"items": { "$ref": "#/definitions/geo" }
+				}
+			},
+			"required": [ "name" ]
 		},
 		"realEstateForm": {
 			"description": "A user-submitted data entry form with real estate fields",
@@ -110,13 +124,7 @@
 				"priceMin": { "type": "number" },
 				"radiusGeoLocation": {
 					"oneOf": [
-						{
-							"type": "object",
-							"properties": {
-								"latitude": { "type": "number" },
-								"longitude": { "type": "number" }
-							}
-						},
+						{ "$ref": "#/definitions/geo" },
 						{ "type": "null" }
 					]
 				},
@@ -357,6 +365,58 @@
 								},
 								"searchURL": { "type": [ "string", "null" ] }
 							}
+						}
+					}
+				}
+			]
+		},
+		"playedListingVideo": {
+			"title": "playedListingVideo",
+			"description": "The user played a video about a listing.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.playedListingVideo" ] },
+						"data":  {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"videoUrl": { "type": [ "string", "null" ], "format": "uri" }
+							}
+						}
+					}
+				}
+			]
+		},
+		"playedNeighborhoodVideo": {
+			"title": "playedNeighborhoodVideo",
+			"description": "The user played a video about a listing.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.playedNeighborhoodVideo" ] },
+						"data":  {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"videoUrl": { "type": [ "string", "null" ], "format": "uri" },
+								"neighborhood": { "$ref": "#/definitions/neighborhood" }
+							},
+							"required": [ "neighborhood" ]
 						}
 					}
 				}
@@ -1018,6 +1078,36 @@
 				}
 			]
 		},
+		"viewedDriveTime": {
+			"title": "viewedDriveTime",
+			"description": "The user viewed the drive time from one address to another.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedDriveTime" ] },
+						"data":  {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"address1": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+								"address2": { "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+								"timeOfDay": { "type": [ "string", "null" ] },
+								"address1ToAddress2Time": { "type": [ "number", "null" ] },
+								"address2ToAddress1Time": { "type": [ "number", "null" ] }
+							},
+							"required": [ "address1", "address2" ]
+						}
+					}
+				}
+			]
+		},
 		"viewedDrivingDirections": {
 			"title": "viewedDrivingDirections",
 			"description": "Viewed driving directions",
@@ -1195,6 +1285,32 @@
 				}
 			]
 		},
+		"viewedNeighborhoodProfile": {
+			"title": "viewedNeighborhoodProfile",
+			"description": "The user viewed a profile of a neighborhood.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedNeighborhoodProfile" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"neighborhood": { "$ref": "#/definitions/neighborhood" }
+							},
+							"required": [ "neighborhood" ]
+						}
+					}
+				}
+			]
+		},
 		"viewedOfficeProfile": {
 			"title": "viewedOfficeProfile",
 			"description": "Viewed an office profile",
@@ -1269,6 +1385,67 @@
 					}
 				}
 			]
+		},
+		"viewedSchoolProfile": {
+			"title": "viewedSchoolProfile",
+			"description": "A user viewed the profile of a school.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedSchoolProfile" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"name": { "type": "string" },
+								"address": {
+									"oneOf": [
+										{ "$ref": "https://cdn.brytecore.com/packages/schemas/address.json#" },
+										{ "type": "null" }
+									]
+								},
+								"isElementarySchool": { "type": [ "boolean", "null" ] },
+								"isMiddleSchool": { "type": [ "boolean", "null" ] },
+								"isHighSchool": { "type": [ "boolean", "null" ] }
+							},
+							"required": [ "name" ]
+						}
+					}
+				}
+			]
+		},
+		"viewedSubdivisionProfile": {
+			"title": "viewedSubdivisionProfile",
+			"description": "A user viewed the profile of a subdivision.",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.viewedSubdivisionProfile" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"listing": {
+									"oneOf": [
+										{ "$ref": "#/definitions/listing" },
+										{ "type": "null" }
+									]
+								},
+								"name": { "type": "string" }
+							},
+							"required": [ "name" ]
+						}
+					}
+				}
+			]
 		}
 	},
 
@@ -1289,6 +1466,8 @@
 		{ "$ref": "#/definitions/hidListing" },
 		{ "$ref": "#/definitions/likedListing" },
 		{ "$ref": "#/definitions/listingImpression" },
+		{ "$ref": "#/definitions/playedListingVideo" },
+		{ "$ref": "#/definitions/playedNeighborhoodVideo" },
 		{ "$ref": "#/definitions/printedDrivingDirections" },
 		{ "$ref": "#/definitions/printedListing" },
 		{ "$ref": "#/definitions/printedListingFlyer" },
@@ -1315,6 +1494,7 @@
 		{ "$ref": "#/definitions/unsubscribedSearch" },
 		{ "$ref": "#/definitions/updatedSavedSearch" },
 		{ "$ref": "#/definitions/viewedAgentProfile" },
+		{ "$ref": "#/definitions/viewedDriveTime" },
 		{ "$ref": "#/definitions/viewedDrivingDirections" },
 		{ "$ref": "#/definitions/viewedListing" },
 		{ "$ref": "#/definitions/viewedListing3DTour" },
@@ -1322,8 +1502,11 @@
 		{ "$ref": "#/definitions/viewedListingMap" },
 		{ "$ref": "#/definitions/viewedListingPhoto" },
 		{ "$ref": "#/definitions/viewedListingVirtualTour" },
+		{ "$ref": "#/definitions/viewedNeighborhoodProfile" },
 		{ "$ref": "#/definitions/viewedOfficeProfile" },
 		{ "$ref": "#/definitions/viewedSavedListing" },
-		{ "$ref": "#/definitions/viewedSavedSearch" }
+		{ "$ref": "#/definitions/viewedSavedSearch" },
+		{ "$ref": "#/definitions/viewedSchoolProfile" },
+		{ "$ref": "#/definitions/viewedSubdivisionProfile" }
 	]
 }
