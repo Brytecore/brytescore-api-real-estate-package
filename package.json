@@ -74,6 +74,12 @@
 		"viewedSavedListing": {
 			"displayName": "Viewed a Saved Listing"
 		},
+		"playedListingVideo": {
+			"displayName": "Played a Listing Video"
+		},
+		"playedNeighborhoodVideo": {
+			"displayName": "Played a Neighborhood Video"
+		},
 		"sharedListingEmail": {
 			"displayName": "Shared Listing by Email"
 		},
@@ -128,8 +134,23 @@
 		"viewedAgentProfile": {
 			"displayName": "Viewed an Agent Profile"
 		},
+		"viewedDriveTime": {
+			"displayName": "Viewed a Drive Time"
+		},
+		"viewedListingMap": {
+			"displayName": "Viewed a Listing on a Map"
+		},
+		"viewedNeighborhoodProfile": {
+			"displayName": "Viewed a Neighborhood Profile"
+		},
 		"viewedOfficeProfile": {
 			"displayName": "Viewed an Office Profile"
+		},
+		"viewedSchoolProfile": {
+			"displayName": "Viewed an School Profile"
+		},
+		"viewedSubdivisionProfile": {
+			"displayName": "Viewed an Subdivision Profile"
 		},
 		"submittedAgentContactForm": {
 			"displayName": "Submitted Agent Contact Form"
