@@ -3,8 +3,8 @@
 	"schema": "https://cdn.brytecore.com/packages/realestate/schema.json",
 	"packageName": "realestate",
 	"description": "A Brytescore API package for tracking real estate visitor behavior and listing searches",
-  "name": "Brytecore Real Estate",
-  "namespace": "realestate",
+	"name": "Brytecore Real Estate",
+	"namespace": "realestate",
 	"author": "Brytecore <info@brytecore.com>",
 	"version": "0.3.1",
 	"repository": "https://github.com/Brytecore/brytescore-api-real-estate-package",
@@ -55,6 +55,9 @@
 		},
 		"listingImpression": {
 			"displayName": "Listing Displayed in Search Results"
+		},
+		"listingImpressionBulk": {
+			"displayName": "Multiple Listings Displayed in Search Results"
 		},
 		"printedListing": {
 			"displayName": "Printed a Listing"

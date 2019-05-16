@@ -370,6 +370,26 @@
 				}
 			]
 		},
+		"listingImpressionBulk": {
+			"title": "listingImpressionBulk",
+			"description": "Multiple Listing Impressions displayed in search results",
+			"type": "object",
+			"allOf": [
+				{ "$ref": "https://cdn.brytecore.com/packages/analytics/schema.json#/definitions/eventProperties" },
+				{
+					"properties": {
+						"event": { "enum": [ "realestate.listingImpressionBulk" ] },
+						"data": {
+							"type": "object",
+							"properties": {
+								"listings": { "type": [ "array", "null" ], "items": { "$ref": "#/definitions/listing" } },
+								"searchURL": { "type": [ "string", "null" ] }
+							}
+						}
+					}
+				}
+			]
+		},
 		"playedListingVideo": {
 			"title": "playedListingVideo",
 			"description": "The user played a video about a listing.",
@@ -1466,6 +1486,7 @@
 		{ "$ref": "#/definitions/hidListing" },
 		{ "$ref": "#/definitions/likedListing" },
 		{ "$ref": "#/definitions/listingImpression" },
+		{ "$ref": "#/definitions/listingImpressionBulk" },
 		{ "$ref": "#/definitions/playedListingVideo" },
 		{ "$ref": "#/definitions/playedNeighborhoodVideo" },
 		{ "$ref": "#/definitions/printedDrivingDirections" },
